@@ -17,12 +17,11 @@ public class DemoWebShopTest {
             password = "oleole",
             loginURL = "http://demowebshop.tricentis.com/login",
             indexURL = "http://demowebshop.tricentis.com";
-@BeforeEach
-void beforeEach() {
-    Configuration.remote = "https://user1:1234@selenoid.autotests.cloud";
-}
+
     @Test
     void checkButtonLogOut() {
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
         step("get cookie by api and set to browser", () -> {
             String authCookie =
                     given()
