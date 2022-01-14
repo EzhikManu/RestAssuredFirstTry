@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
@@ -20,6 +21,7 @@ public class DemoWebShopTest {
         step("get cookie by api and set to browser", () -> {
             String authCookie =
                     given()
+                            .filter(customLogFilter().withCustomTemplates())
                             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                             .formParam("Email", email)
                             .formParam("Password", password)

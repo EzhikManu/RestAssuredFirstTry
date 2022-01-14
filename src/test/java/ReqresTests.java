@@ -1,6 +1,7 @@
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
+import static filters.CustomLogFilter.customLogFilter;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -12,6 +13,7 @@ public class ReqresTests {
     @Test
     void successfulRegistration() {
         given()
+                .filter(customLogFilter().withCustomTemplates())
                 .contentType(ContentType.JSON)
                 .body("{\"email\": \"eve.holt@reqres.in\",\"password\": \"pistol\"}")
                 .when()
@@ -25,6 +27,7 @@ public class ReqresTests {
     @Test
     void singleUserNotFound() {
         given()
+                .filter(customLogFilter().withCustomTemplates())
                 .contentType(ContentType.JSON)
                 .when()
                 .get(singleUserNotFoundURL)
@@ -35,6 +38,7 @@ public class ReqresTests {
     @Test
     void unSuccessfulRegistration() {
         given()
+                .filter(customLogFilter().withCustomTemplates())
                 .contentType(ContentType.JSON)
                 .body("{\"email\": \"sydney@fife\"}")
                 .when()
@@ -46,6 +50,7 @@ public class ReqresTests {
     @Test
     void singleUser() {
         given()
+                .filter(customLogFilter().withCustomTemplates())
                 .contentType(ContentType.JSON)
                 .when()
                 .get(singleUserURL)
@@ -57,6 +62,7 @@ public class ReqresTests {
     @Test
     void update() {
         given()
+                .filter(customLogFilter().withCustomTemplates())
                 .contentType(ContentType.JSON)
                 .body("{\"name\": \"morpheus\",\"job\": \"zion resident\"}")
                 .when()
