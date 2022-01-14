@@ -1,3 +1,5 @@
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
@@ -15,7 +17,10 @@ public class DemoWebShopTest {
             password = "oleole",
             loginURL = "http://demowebshop.tricentis.com/login",
             indexURL = "http://demowebshop.tricentis.com";
-
+@BeforeEach
+void beforeEach() {
+    Configuration.remote = "https://user1:1234@selenoid.autotests.cloud";
+}
     @Test
     void checkButtonLogOut() {
         step("get cookie by api and set to browser", () -> {
