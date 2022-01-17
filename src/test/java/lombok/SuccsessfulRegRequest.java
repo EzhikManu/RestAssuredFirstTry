@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SuccsessfulRegRequest {
 @JsonProperty("email")
-    private String email;
+public String email;
 @JsonProperty("password")
-    private String password;
+public String password;
 }
